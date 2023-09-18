@@ -1,4 +1,4 @@
-@startuml
+@startuml Clase Abstracta ActiveRecord
     abstract class ActiveRecord{
         {abstract} +Leer(): Boolean
         {abstract} +Insertar(): Boolean
