@@ -1,0 +1,8 @@
+@startuml
+    abstract class ActiveRecord{
+        {abstract} +Leer(): Boolean
+        {abstract} +Insertar(): Boolean
+        {abstract} +Actualizar(): Boolean
+        {abstract} +Eliminar(): Boolean
+    }
+@enduml

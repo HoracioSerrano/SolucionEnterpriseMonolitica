@@ -1,0 +1,25 @@
+@startuml
+    hide footbox
+    participant "Sistema" as sis 
+    participant "registro: ActiveRecord" as reg
+    database "DataBase" as db
+
+    activate sis
+    create reg
+    sis -> reg++: new()
+    sis <-- reg--
+    sis -> reg++: registro.id = id
+    sis <-- reg--
+    sis -> reg++: Leer()
+    reg -> db++: Seleccionar(id)
+    alt "Registro Encontrado"
+        reg <-- db: DataRow
+        reg -> reg++: ConfigurarObjeto(DataRow)
+        reg --> reg--
+        sis <-- reg: True
+    else "Registro NO Encontrado"
+        reg <-- db--: Vacio
+        sis <-- reg--: False
+    end
+    
+@enduml
