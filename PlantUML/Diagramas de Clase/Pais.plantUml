@@ -1,0 +1,8 @@
+@startuml Pais
+!include ActiveRecord.plantuml
+Class Pais extends ActiveRecord{
+    +pai_id: int
+    +pai_nombre: String
+    +pai_nacionalidad: String
+}
+@enduml

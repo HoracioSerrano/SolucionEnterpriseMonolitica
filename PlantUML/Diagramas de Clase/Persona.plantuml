@@ -1,0 +1,15 @@
+@startuml Persona
+!include ActiveRecord.plantuml
+!include Pais.plantuml
+
+class Persona extends ActiveRecord{
+    +per_id: int
+    +per_nombre: String
+    +per_apellido: String
+    +per_pai_id_nacionalidad: int
+    +per_dni_argentino: int
+    +per_dni_extrangero: String
+}
+Persona "0..*" - "1" Pais: Nacionalidad\n{per_pai_id_nacionalidad = pai_id}
+
+@enduml
