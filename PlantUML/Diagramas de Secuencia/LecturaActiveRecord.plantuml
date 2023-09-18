@@ -1,4 +1,5 @@
-@startuml
+@startuml Sequencia Lectura ActiveRecord
+    title "Secuencia Lectura Registro ActiveRecord"
     hide footbox
     participant "Sistema" as sis 
     participant "registro: ActiveRecord" as reg
