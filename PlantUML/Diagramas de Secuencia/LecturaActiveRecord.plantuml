@@ -3,23 +3,48 @@
     hide footbox
     participant "Sistema" as sis 
     participant "registro: ActiveRecord" as reg
+    participant "conexion: SqlConnection" as con
+    participant "comando: SqlCommand" as cmd
+    participant "adaptador: SqlAdapter" as adp
+    participant "dt: DataTable" as dt
+    participant "ActiveRecord" as class
     database "DataBase" as db
-
+  
     activate sis
     create reg
     sis -> reg++: new()
     sis <-- reg--
-    sis -> reg++: registro.id = id
+    sis -> reg++: id = Id_elemento_a_Recuperar
     sis <-- reg--
     sis -> reg++: Leer()
-    reg -> db++: Seleccionar(id)
-    alt "Registro Encontrado"
-        reg <-- db: DataRow
-        reg -> reg++: ConfigurarObjeto(DataRow)
-        reg --> reg--
+    create con
+    reg -> con++: new(cadenaConexion)
+    reg <-- con--
+    reg -> con++: createCommand()
+    create cmd
+    con -> cmd++: new()
+    con <-- cmd--
+    reg <-- con--: comando
+    reg -> cmd++: CommandText = CadenaSQLSelect 
+    reg <-- cmd--
+    reg -> cmd++: Parameters.AddWithValue("@id", registro.id)
+    reg <-- cmd--
+    create adp
+    reg -> adp++: new(comando)
+    reg <-- adp--
+    create dt
+    reg -> dt++: new()
+    reg <-- dt--
+    reg -> adp++: Fill(dt)
+    adp -> db++
+    adp <-- db-- 
+    reg <-- adp--
+
+    alt dt.Rows.Count > 0
+        reg -> class++: ConfigurarObjeto(registro, dt.Rows(0))
+        reg <-- class--
         sis <-- reg: True
-    else "Registro NO Encontrado"
-        reg <-- db--: Vacio
+    else Registro NO Encontrado
         sis <-- reg--: False
     end
     
