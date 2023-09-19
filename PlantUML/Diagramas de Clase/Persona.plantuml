@@ -6,9 +6,14 @@ class Persona extends ActiveRecord{
     +per_id: int
     +per_nombre: String
     +per_apellido: String
+    +per_cuil: int
     +per_pai_id_nacionalidad: int
-    +per_dni_argentino: int
-    +per_dni_extrangero: String
+    +per_tdo_id_tipo_documento_argentino: int
+    +per_nro_documento_argentino: int
+    +per_nro_documento_extrangero: String
+    +per_fecha_nacimiento: date
+    +per_sexo_id: int
+    +per_genero_id: int
 }
 Persona "0..*" - "1" Pais: Nacionalidad\n{per_pai_id_nacionalidad = pai_id}
 
