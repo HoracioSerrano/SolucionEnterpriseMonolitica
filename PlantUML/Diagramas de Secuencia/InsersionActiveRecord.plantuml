@@ -1,0 +1,52 @@
+@startuml Sequencia Lectura ActiveRecord
+    title "Secuencia Insersion Registro ActiveRecord"
+    hide footbox
+    participant "Sistema" as sis 
+    participant "registro: ActiveRecord" as reg
+    participant "conexion: SqlConnection" as con
+    participant "comando: SqlCommand" as cmd
+
+  
+    activate sis
+    create reg
+    sis -> reg++: new()
+    sis <-- reg--
+    sis -> reg++: configurar valores miembros
+    sis <-- reg--
+    sis -> reg++: Insertar()
+    create con
+    reg -> con++: new(cadenaConexion)
+    reg <-- con--
+    reg -> con++: createCommand()
+    create cmd
+    con -> cmd++: new()
+    con <-- cmd--
+    reg <-- con--: comando
+    reg -> cmd++: CommandText = CadenaSQLInsert
+    note right: el comando debe\nincluir OUTPUT\ncon el id insertado 
+    reg <-- cmd--
+    loop Para cada Miembro de registro
+        reg -> cmd++: Parameters.AddWithValue("@miembro", registro.miembro)
+        reg <-- cmd--       
+    end   
+
+    alt Try
+        reg -> con++: open()
+        reg <-- con
+        reg -> con: registro.id = Convert.ToInt32(comando.ExecuteScalar())
+        reg <-- con
+        sis <-- reg: True
+    else Catch error
+        reg -> reg++: Logear(error)
+        reg --> reg--
+        reg -> reg++: Throw(error)
+        reg --> reg--
+    else Finaly
+        reg -> con: close()
+        reg <-- con--
+        deactivate reg
+    end
+
+
+    
+@enduml
