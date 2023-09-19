@@ -9,21 +9,7 @@
     participant "dt: DataTable" as dt
     participant "ActiveRecord" as class
     database "DataBase" as db
-    
-
-
-' Agregar el parámetro
-'comando.Parameters.AddWithValue("@Parametro", valorDelParametro)
-
-' Crear un objeto DataAdapter para ejecutar la consulta y llenar un DataTable
-'Dim adaptador As New SqlDataAdapter(comando)
-'Dim dataTable As New DataTable()
-
-' Ejecutar la consulta y llenar el DataTable
-'adaptador.Fill(dataTable)
-
-
-
+  
     activate sis
     create reg
     sis -> reg++: new()
