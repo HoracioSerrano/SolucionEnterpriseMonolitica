@@ -4,5 +4,6 @@
         {abstract} +Insertar(): Boolean
         {abstract} +Actualizar(): Boolean
         {abstract} +Eliminar(): Boolean
+        {abstract} -Configurar(dr: DataRow): void
     }
 @enduml

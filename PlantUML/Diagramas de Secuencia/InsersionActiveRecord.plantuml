@@ -25,7 +25,7 @@
     reg -> cmd++: CommandText = CadenaSQLInsert
     note right: el comando debe\nincluir OUTPUT\ncon el id insertado 
     reg <-- cmd--
-    loop Para cada Miembro de registro
+    loop Para cada Miembro del registro
         reg -> cmd++: Parameters.AddWithValue("@miembro", registro.miembro)
         reg <-- cmd--       
     end   
