@@ -1,13 +1,18 @@
 @startuml ActiveRecord
+!include \Entidades\Coneccion.plantuml
 
 
-    abstract class ActiveRecord{
+namespace Datos {
+     abstract class ActiveRecord{
         {abstract} +Leer(): Boolean
         {abstract} +Insertar(): Boolean
         {abstract} +Actualizar(): Boolean
         {abstract} +Eliminar(): Boolean
         {abstract} #Configurar(dr: DataRow): void
     }
+}
+
+
 
 
 @enduml

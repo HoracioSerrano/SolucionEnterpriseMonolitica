@@ -2,15 +2,29 @@
 !include ActiveRecord.plantuml
 !include Pais.plantuml
 !include Persona.plantuml
-class Domicilio extends ActiveRecord{
+
+namespace Haberes {
+
+class Domicilio extends Datos.ActiveRecord{
     +dom_id: int
     +dom_per_id_residente: int
     +dom_pai_id_pais: int
     +dom_prv_id_provincia: int
-    +dom_ciudad: int
-    +dom_codigo_postal: int
+    +dom_partido: String
+    +dom_codigo_postal_CPA: String
+    +dom_codigo_postal_CP4: String
+    +dom_localidad: String
+    +dom_barrio: String
+    +dom_calle: String
+    +dom_calle_corto: String
+    +dom_altura: int
+    +dom_puerta: String
 }
-Domicilio "1"-"1" Persona: Residente\n{dom_per_id_residente = per_id}
-Domicilio "0..*"--"1" Pais: Pais\n{dom_pai_id_pais = pai_id}
+Domicilio "1"--"1" Persona: Residente\n{dom_per_id_residente = per_id}
+Domicilio "0..*"-"1" Pais: Pais\n{dom_pai_id_pais = pai_id}
+
+}
+
+
 
 @enduml

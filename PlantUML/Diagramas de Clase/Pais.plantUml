@@ -1,11 +1,18 @@
 @startuml Pais
 !include ActiveRecord.plantuml
 
-Class Pais extends ActiveRecord{
+namespace Haberes {
+
+Class Pais extends Datos.ActiveRecord{
     +pai_id: int
     +pai_nombre: String
     +pai_nacionalidad: String
+    +pai_vigente: boolean
 }
+
+
+}
+
 
 
 

@@ -1,0 +1,10 @@
+@startuml Coneccion
+namespace Datos {
+
+
+class Coneccion {
+    {static} CrearConeccion(): SqlConnection
+}
+
+}
+@enduml

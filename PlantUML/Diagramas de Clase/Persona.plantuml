@@ -2,7 +2,8 @@
 !include ActiveRecord.plantuml
 !include Pais.plantuml
 
-class Persona extends ActiveRecord{
+namespace Haberes {
+class Persona extends Datos.ActiveRecord{
     +per_id: int
     +per_nombre: String
     +per_apellido: String
@@ -14,8 +15,10 @@ class Persona extends ActiveRecord{
     +per_fecha_nacimiento: date
     +per_sexo_id: int
     +per_genero_id: int
-    {static} -ConfigurarObjeto(p: Persona, dr: DataRow): void
 }
 Persona "0..*" - "1" Pais: Nacionalidad\n{per_pai_id_nacionalidad = pai_id}
+}
+
+
 
 @enduml
