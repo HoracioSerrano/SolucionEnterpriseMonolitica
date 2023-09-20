@@ -1,4 +1,6 @@
 @startuml ActiveRecord
+
+
     abstract class ActiveRecord{
         {abstract} +Leer(): Boolean
         {abstract} +Insertar(): Boolean
@@ -6,4 +8,6 @@
         {abstract} +Eliminar(): Boolean
         {abstract} -Configurar(dr: DataRow): void
     }
+
+
 @enduml
