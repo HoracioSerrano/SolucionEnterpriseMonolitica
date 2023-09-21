@@ -1,0 +1,46 @@
+@startuml Sequencia Actualizacion ActiveRecord
+    title "Secuencia Actualizacion Registro ActiveRecord"
+    hide footbox
+    participant "Sistema" as sis 
+    participant "registro: ActiveRecord" as reg
+    participant "conexion: SqlConnection" as con
+    participant "comando: SqlCommand" as cmd 
+    activate sis
+    create reg
+    sis -> reg++: new()
+    sis <-- reg--
+    sis -> reg++: configurar valores miembros
+    sis <-- reg--
+    sis -> reg++: Eliminar()
+    alt registro.leido = true
+    create con
+    reg -> con++: new(cadenaConexion)
+    reg <-- con--
+    reg -> con++: createCommand()
+    create cmd
+    con -> cmd++: new()
+    con <-- cmd--
+    reg <-- con--: comando
+    reg -> cmd++: CommandText = CadenaSQLDelete
+    reg <-- cmd--
+    reg -> cmd++: Parameters.AddWithValue("@miembro", registro.id)
+    reg <-- cmd--       
+    alt Try
+        reg -> con++: open()
+        reg <-- con
+        reg -> con: comando.ExecuteScalar()
+        reg <-- con
+        sis <-- reg: True
+    else Catch error
+        reg -> reg++: Logear(error)
+        reg --> reg--
+        reg -> reg++: Throw(error)
+        reg --> reg--
+    else Finaly
+        reg -> con: close()
+        reg <-- con--
+    end
+    else
+         sis<--reg--: False
+    end
+@enduml
