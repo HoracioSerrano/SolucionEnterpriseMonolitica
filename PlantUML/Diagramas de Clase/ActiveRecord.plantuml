@@ -9,6 +9,7 @@ namespace Datos {
         {abstract} +Actualizar(): Boolean
         {abstract} +Eliminar(): Boolean
         {abstract} #Configurar(dr: DataRow): void
+        #Leido: boolean = false
     }
 }
 
