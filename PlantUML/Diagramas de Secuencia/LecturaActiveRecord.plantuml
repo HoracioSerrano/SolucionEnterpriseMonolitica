@@ -43,6 +43,7 @@
     alt dt.Rows.Count > 0
         reg -> class++: ConfigurarObjeto(registro, dt.Rows(0))
         reg <-- class--
+        reg -> reg: leido = true
         sis <-- reg: True
     else Registro NO Encontrado
         sis <-- reg--: False
