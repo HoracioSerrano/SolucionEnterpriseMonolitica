@@ -1,1 +1,1 @@
-Solucion de practica monolitica en php basada en el modelo de negocio del IAFPRPM
+Solucion de practica monolitica en php
